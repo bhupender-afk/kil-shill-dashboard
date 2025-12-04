@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-const PUBLIC_ROUTES = ['/login', '/register', '/forgot-password']
+const PUBLIC_ROUTES = ['/login', '/register', '/forgot-password', '/dashboard', '/']
 const AUTH_ROUTES = ['/login', '/register']
 const PROTECTED_ADMIN_ROUTES = ['/admin', '/users', '/analytics']
 
@@ -15,7 +15,7 @@ export function middleware(request: NextRequest) {
   const isRootPath = pathname === '/'
 
   if (isRootPath && !token) {
-    return NextResponse.redirect(new URL('/login', request.url))
+    return NextResponse.redirect(new URL('/dashboard', request.url))
   }
 
   if (isRootPath && token) {
@@ -27,7 +27,7 @@ export function middleware(request: NextRequest) {
   }
 
   if (!isPublicRoute && !token) {
-    const loginUrl = new URL('/login', request.url)
+    const loginUrl = new URL('/dashboard', request.url)
     loginUrl.searchParams.set('from', pathname)
     return NextResponse.redirect(loginUrl)
   }

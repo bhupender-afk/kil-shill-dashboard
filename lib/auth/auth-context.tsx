@@ -54,7 +54,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       }
     }
 
-    initAuth()
+    // initAuth()
   }, [checkAuth])
 
   const value: AuthContextType = {

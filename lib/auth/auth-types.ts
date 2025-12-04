@@ -53,6 +53,6 @@ export interface ProtectedRouteConfig {
   redirectTo?: string
 }
 
-export const PUBLIC_ROUTES = ['/login', '/register', '/forgot-password']
+export const PUBLIC_ROUTES = ['/login', '/register', '/forgot-password', '/dashboard', '/']
 export const AUTH_REDIRECT_PATH = '/dashboard'
 export const LOGIN_REDIRECT_PATH = '/login'
