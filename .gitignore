@@ -33,6 +33,11 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# Security tokens and keys
+*.token
+.github-token
+auth-tokens.txt
+
 # vercel
 .vercel
 
