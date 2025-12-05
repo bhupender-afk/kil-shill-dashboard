@@ -38,7 +38,7 @@ export function NavMain({
                 asChild
                 variant={isActive(item.url) ? "gradient" : "ghost"}
                 className={cn(
-                  "h-12 p-4 justify-start w-full transition-all duration-200 mb-2",
+                  "h-10 p-4 justify-start w-full transition-all duration-200 mb-2",
                   isActive(item.url)
                     ? "text-black font-semibold shadow-md"
                     : "text-muted-foreground hover:text-foreground hover:bg-accent/50"

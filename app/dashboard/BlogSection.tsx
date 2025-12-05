@@ -43,19 +43,19 @@ const blogPosts = [
     image:
       "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=600&h=300&fit=crop&crop=entropy&auto=format",
   },
-  {
-    id: 4,
-    title: "The Psychology Behind Successful Trading Signals",
-    description:
-      "Understanding the cognitive biases that influence KOL predictions and how to filter noise from actionable insights.",
-    author: "Dr. Sarah Chen",
-    timeAgo: "2 days ago",
-    readTime: "8 min read",
-    category: "Psychology",
-    categoryColor: "bg-blue-600",
-    image:
-      "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&h=300&fit=crop&crop=entropy&auto=format",
-  },
+  // {
+  //   id: 4,
+  //   title: "The Psychology Behind Successful Trading Signals",
+  //   description:
+  //     "Understanding the cognitive biases that influence KOL predictions and how to filter noise from actionable insights.",
+  //   author: "Dr. Sarah Chen",
+  //   timeAgo: "2 days ago",
+  //   readTime: "8 min read",
+  //   category: "Psychology",
+  //   categoryColor: "bg-blue-600",
+  //   image:
+  //     "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&h=300&fit=crop&crop=entropy&auto=format",
+  // },
 ];
 
 export default function BlogSection() {

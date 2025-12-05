@@ -150,15 +150,15 @@ export function NavUser({
             <DropdownMenuGroup>
               <DropdownMenuItem onClick={() => handleNavigation("/profile")}>
                 <IconUserCircle />
-                Account
+                Profile
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => handleNavigation("/billing")}>
                 <IconCreditCard />
-                Billing
+                Change Password
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => handleNavigation("/notifications")}>
                 <IconNotification />
-                Notifications
+                Notification
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

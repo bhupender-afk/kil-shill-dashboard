@@ -143,10 +143,12 @@ function DragHandle({ id }: { id: number }) {
 const columns: ColumnDef<z.infer<typeof schema>>[] = [
   {
     id: "drag",
-    header: "#",
-    // header: () => null,
-    // cell: ({ row }) => <DragHandle id={row.original.id} />,
-    cell: ({ row }) => <span className="font-thin">{row.index + 1}</span>,
+    header: () => <div className="text-center">#</div>,
+    cell: ({ row }) => (
+      <div className="flex justify-center">
+        <span className="font-thin text-sm">{row.index + 1}</span>
+      </div>
+    ),
   },
   // {
   //   id: "select",
@@ -176,17 +178,13 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
   // },
   {
     accessorKey: "header",
-    header: "Influencer",
-    // cell: ({ row }) => {
-    //   return <TableCellViewer item={row.original} />
-    // },
-    cell: ({ row }) => (
-      <div className="w-32 flex items-center gap-2">
-        <Badge variant="secondary" className="h-10 w-10 text-lg">C</Badge>
+    header: () => <div className="text-left">Influencer</div>,
+    cell: () => (
+      <div className="flex items-center gap-2 min-w-fit">
+        <Badge variant="secondary" className="h-10 w-10 text-lg flex-shrink-0">C</Badge>
         <div className="flex flex-col leading-tight">
-          <span className="font-semibold text-md ">CryptoKing</span>
-          <span className="text-muted-foreground mt-1 font-thin">@CryptoKing</span>
-
+          <span className="font-semibold text-sm md:text-md whitespace-nowrap">CryptoKing</span>
+          <span className="text-muted-foreground mt-1 font-thin text-xs md:text-sm">@CryptoKing</span>
         </div>
       </div>
     ),
@@ -194,41 +192,36 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
   },
   {
     accessorKey: "type",
-    header: "Accuracy Type",
-    cell: ({ row }) => (
-
-      <div className="w-32">
-        <span className={`${"font-bold text-md"} ${30 < 89.2 ? "text-green-500" : 50 < 89.2 ? "text-red-500" : "text-yellow-500"}`}>89%.2</span>
+    header: () => <div className="text-center">Accuracy</div>,
+    cell: () => (
+      <div className="flex justify-center">
+        <div className={`font-bold text-sm md:text-md whitespace-nowrap ${30 < 89.2 ? "text-green-500" : 50 < 89.2 ? "text-red-500" : "text-yellow-500"}`}>
+          84.2%
+        </div>
       </div>
     ),
   },
   {
     accessorKey: "status",
-    header: "Category",
-    cell: ({ row }) => (
-      <Badge variant="outline" className="text-muted-foreground px-1.5">
-
-        Cover page
-      </Badge>
-
+    header: () => <div className="text-center">Category</div>,
+    cell: () => (
+      <div className="flex justify-center">
+        <Badge variant="outline" className="text-muted-foreground px-1.5 text-xs md:text-sm">
+          Crypto
+        </Badge>
+      </div>
     ),
   },
   {
     accessorKey: "target",
-    header: () => <div className="w-full text-center">Platforms</div>,
-    cell: ({ row }) => (
-      <div className="w-32 flex items-center">
-        <Badge variant="outline" className="text-muted-foreground px-1.5">
-
+    header: () => <div className="text-center">Platforms</div>,
+    cell: () => (
+      <div className="flex items-center justify-center gap-1 min-w-fit">
+        <Badge variant="outline" className="text-muted-foreground px-1.5 text-xs">
           X
         </Badge>
-        <Badge variant="outline" className="text-muted-foreground px-1.5 mx-1">
-
-          Youtube
-        </Badge>
-        <Badge variant="outline" className="text-muted-foreground px-1.5">
-
-         Web
+        <Badge variant="outline" className="text-muted-foreground px-1.5 text-xs">
+          YouTube
         </Badge>
       </div>
       // <form
@@ -254,11 +247,11 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
   },
   {
     accessorKey: "limit",
-    header: () => <div className="w-full text-center">Median RR</div>,
-    cell: ({ row }) => (
-      <div className="w-32 flex flex-col items-center">
-        <span className="font-semibold text-md text-yellow-500">75.3%</span>
-        <span className="font-thin text-md text-muted-foreground">Risk: Reward</span>
+    header: () => <div className="text-center">Median RR</div>,
+    cell: () => (
+      <div className="flex flex-col items-center min-w-fit">
+        <span className="font-semibold text-sm md:text-md text-yellow-500 whitespace-nowrap">2.4x</span>
+        <span className="font-thin text-xs md:text-sm text-muted-foreground whitespace-nowrap">Risk:Reward</span>
       </div>
       // <form
       //   onSubmit={(e) => {
@@ -283,11 +276,11 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
   },
   {
     accessorKey: "TT",
-    header: () => <div className="w-full text-center">Median TT</div>,
-    cell: ({ row }) => (
-       <div className="w-32 flex flex-col items-center">
-        <span className="font-semibold text-md text-yellow-500">3.2D</span>
-        <span className="font-thin text-md text-muted-foreground">Time to Traget</span>
+    header: () => <div className="text-center">Median TT</div>,
+    cell: () => (
+      <div className="flex flex-col items-center min-w-fit">
+        <span className="font-semibold text-sm md:text-md text-yellow-500 whitespace-nowrap">3.2d</span>
+        <span className="font-thin text-xs md:text-sm text-muted-foreground whitespace-nowrap">Time to Target</span>
       </div>
       // <form
       //   onSubmit={(e) => {
@@ -312,12 +305,14 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
   },
   {
     accessorKey: "reviewer",
-    header: () => <div className="w-full text-right flex items-center gap-2 ">Confidence <Info size={12} /></div>,
-    cell: ({ row }) => (
-      <ProgressBar value={75} />
+    header: () => <div className="text-center px-2">Confidence <Info size={12} className="inline ml-1" /></div>,
+    cell: () => (
+      <div className="flex justify-center px-2">
+        <ProgressBar value={94} />
+      </div>
     )
     //   {
-      
+
     //   const isAssigned = row.original.reviewer !== "Assign reviewer"
 
     //   if (isAssigned) {
@@ -349,16 +344,15 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
     // },
   },
   {
-    accessorKey: "reviewer",
-    header: () => <div className="w-full flex items-center gap-2 ">Total Calls</div>,
-    cell: ({ row }) =>
-    (
-       <div>
-        <span className="font-thin">876</span>
+    accessorKey: "calls",
+    header: () => <div className="text-center px-2">Total Calls</div>,
+    cell: () => (
+      <div className="flex justify-center px-2">
+        <span className="font-thin text-sm md:text-base whitespace-nowrap">1,247</span>
       </div>
     )
     //    {
-     
+
     //   const isAssigned = row.original.reviewer !== "Assign reviewer"
 
     //   if (isAssigned) {
@@ -425,14 +419,17 @@ function DraggableRow({ row }: { row: Row<z.infer<typeof schema>> }) {
       data-state={row.getIsSelected() && "selected"}
       data-dragging={isDragging}
       ref={setNodeRef}
-      className="relative z-0 data-[dragging=true]:z-10 data-[dragging=true]:opacity-80"
+      className="relative z-0 data-[dragging=true]:z-10 data-[dragging=true]:opacity-80 hover:bg-muted/30 transition-colors"
       style={{
         transform: CSS.Transform.toString(transform),
         transition: transition,
       }}
     >
       {row.getVisibleCells().map((cell) => (
-        <TableCell key={cell.id}>
+        <TableCell
+          key={cell.id}
+          className="px-2 md:px-4 py-3 text-xs md:text-sm border-b border-border/50 align-top"
+        >
           {flexRender(cell.column.columnDef.cell, cell.getContext())}
         </TableCell>
       ))}
@@ -508,49 +505,49 @@ export function DataTable({
   return (
     <Tabs
       defaultValue="outline"
-      className="w-full flex-col justify-start gap-6"
+      className="w-full flex-col justify-start gap-6 mt-8"
     >
       <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between px-3 sm:px-4 lg:px-6 gap-4 sm:gap-6">
         <h1 className="font-semibold  text-xl sm:text-2xl md:text-3xl leading-tight">KOL Leaderboard</h1>
         <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-start sm:justify-around w-full lg:w-auto">
 
 
-        <Label htmlFor="view-selector" className="sr-only">
-          View
-        </Label>
-        <Select defaultValue="outline">
-          <SelectTrigger
-            className="flex w-full sm:w-fit @4xl/main:hidden"
-            size="sm"
-            id="view-selector"
-          >
-            <SelectValue placeholder="Select a view" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="outline">All</SelectItem>
-            <SelectItem value="past-performance">Crypto</SelectItem>
-            <SelectItem value="key-personnel">Stock</SelectItem>
-            <SelectItem value="focus-documents">Forex</SelectItem>
-          </SelectContent>
-        </Select>
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-          <TabsList className="**:data-[slot=badge]:bg-muted-foreground/30 hidden **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex">
-            <TabsTrigger value="outline">All</TabsTrigger>
-            <TabsTrigger value="past-performance">
-              Crypto <Badge variant="secondary">3</Badge>
-            </TabsTrigger>
-            <TabsTrigger value="key-personnel">
-              Stock <Badge variant="secondary">2</Badge>
-            </TabsTrigger>
-            <TabsTrigger value="focus-documents">Forex <Badge variant="secondary">1</Badge></TabsTrigger>
-          </TabsList>
-          <div className="flex flex-row items-center gap-2 w-full sm:w-auto">
-            <Button variant="outline" size="sm" className="flex-1 sm:flex-initial h-9 sm:h-10">
-              <Filter className="h-4 w-4" />
-              <span className="hidden sm:inline">More Filter</span>
-              <span className="sm:hidden">Filter</span>
-            </Button>
-            {/* <DropdownMenu>
+          <Label htmlFor="view-selector" className="sr-only">
+            View
+          </Label>
+          <Select defaultValue="outline">
+            <SelectTrigger
+              className="flex w-full sm:w-fit @4xl/main:hidden"
+              size="sm"
+              id="view-selector"
+            >
+              <SelectValue placeholder="Select a view" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="outline">All</SelectItem>
+              <SelectItem value="past-performance">Crypto</SelectItem>
+              <SelectItem value="key-personnel">Stock</SelectItem>
+              <SelectItem value="focus-documents">Forex</SelectItem>
+            </SelectContent>
+          </Select>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
+            <TabsList className="**:data-[slot=badge]:bg-muted-foreground/30 hidden **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex gap-2 bg-transparent">
+              <TabsTrigger value="outline" className="rounded-lg px-4 py-2 h-9 sm:h-10 relative border-2 border-[#00fc8b] bg-transparent data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#00fc8b] data-[state=active]:via-[#06ed94] data-[state=active]:to-[#00dea0] data-[state=active]:text-black text-[#00fc8b] data-[state=active]:border-transparent">All</TabsTrigger>
+              <TabsTrigger value="past-performance" className="rounded-lg px-4 py-2 h-9 sm:h-10 relative  border-[#00fc8b] bg-transparent data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#00fc8b] data-[state=active]:via-[#06ed94] data-[state=active]:to-[#00dea0] data-[state=active]:text-black text-[#00fc8b] data-[state=active]:border-transparent">
+                Crypto <Badge variant="secondary">3</Badge>
+              </TabsTrigger>
+              <TabsTrigger value="key-personnel" className="rounded-lg px-4 py-2 h-9 sm:h-10 relative  border-[#00fc8b] bg-transparent data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#00fc8b] data-[state=active]:via-[#06ed94] data-[state=active]:to-[#00dea0] data-[state=active]:text-black text-[#00fc8b] data-[state=active]:border-transparent">
+                Stock <Badge variant="secondary">2</Badge>
+              </TabsTrigger>
+              <TabsTrigger value="focus-documents" className="rounded-lg px-4 py-2 h-9 sm:h-10 relative  border-[#00fc8b] bg-transparent data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#00fc8b] data-[state=active]:via-[#06ed94] data-[state=active]:to-[#00dea0] data-[state=active]:text-black text-[#00fc8b] data-[state=active]:border-transparent">Forex <Badge variant="secondary">1</Badge></TabsTrigger>
+            </TabsList>
+            <div className="flex flex-row items-center gap-2 w-full sm:w-auto">
+              <Button variant="outline" size="sm" className="flex-1 sm:flex-initial h-9 sm:h-10">
+                <Filter className="h-4 w-4" />
+                <span className="hidden sm:inline">Filter</span>
+                <span className="sm:hidden">Filter</span>
+              </Button>
+              {/* <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm">
                   <IconLayoutColumns />
@@ -583,14 +580,14 @@ export function DataTable({
                   })}
               </DropdownMenuContent>
             </DropdownMenu> */}
-            <Button variant="outline" className="bg-[#00fc8b] flex-1 sm:flex-initial h-9 sm:h-10" size="sm">
-              <IconCircleFilled className="h-4 w-4 fill-green-600 dark:fill-green-400" />
-              <span className="hidden sm:inline text-black">Update Live</span>
-              <span className="sm:hidden text-black">Live</span>
-            </Button>
+              <Button variant="outline" className="bg-[#00fc8b] flex-1 sm:flex-initial h-9 sm:h-10" size="sm">
+                <IconCircleFilled className="h-4 w-4 fill-green-600 dark:fill-green-400" />
+                <span className="hidden sm:inline text-black">Update Live</span>
+                <span className="sm:hidden text-black">Live</span>
+              </Button>
+            </div>
           </div>
         </div>
-           </div>
 
       </div>
       <TabsContent
@@ -598,20 +595,25 @@ export function DataTable({
         className="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6"
       >
         <div className="overflow-hidden rounded-lg border">
-          <DndContext
-            collisionDetection={closestCenter}
-            modifiers={[restrictToVerticalAxis]}
-            onDragEnd={handleDragEnd}
-            sensors={sensors}
-            id={sortableId}
-          >
-            <Table>
-              <TableHeader className="bg-muted sticky top-0 z-10">
+          <div className="overflow-x-auto">
+            <DndContext
+              collisionDetection={closestCenter}
+              modifiers={[restrictToVerticalAxis]}
+              onDragEnd={handleDragEnd}
+              sensors={sensors}
+              id={sortableId}
+            >
+              <Table className="min-w-[800px] table-auto w-full">
+              <TableHeader className="bg-muted/50 sticky top-0 z-10 border-b">
                 {table.getHeaderGroups().map((headerGroup) => (
-                  <TableRow key={headerGroup.id}>
+                  <TableRow key={headerGroup.id} className="border-b">
                     {headerGroup.headers.map((header) => {
                       return (
-                        <TableHead key={header.id} colSpan={header.colSpan}>
+                        <TableHead
+                          key={header.id}
+                          colSpan={header.colSpan}
+                          className="h-12 px-2 md:px-4 text-xs md:text-sm font-medium text-muted-foreground whitespace-nowrap"
+                        >
                           {header.isPlaceholder
                             ? null
                             : flexRender(
@@ -624,7 +626,7 @@ export function DataTable({
                   </TableRow>
                 ))}
               </TableHeader>
-              <TableBody className="**:data-[slot=table-cell]:first:w-8">
+              <TableBody>
                 {table.getRowModel().rows?.length ? (
                   <SortableContext
                     items={dataIds}
@@ -638,7 +640,7 @@ export function DataTable({
                   <TableRow>
                     <TableCell
                       colSpan={columns.length}
-                      className="h-28 text-center"
+                      className="h-28 text-center text-muted-foreground"
                     >
                       No results.
                     </TableCell>
@@ -647,6 +649,7 @@ export function DataTable({
               </TableBody>
             </Table>
           </DndContext>
+          </div>
         </div>
         <div className="flex items-center justify-between px-4">
           <div className="text-muted-foreground hidden flex-1 text-sm lg:flex">

@@ -181,20 +181,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   const documents = [
     {
-      name: "Data Library",
-      url: "/data-library",
+      name: "Setting",
+      url: "/setting",
       icon: IconDatabase,
     },
     {
-      name: "Reports",
+      name: "Watch List",
       url: "/reports",
       icon: IconReport,
     },
-    {
-      name: "Word Assistant",
-      url: "/word-assistant",
-      icon: IconFileWord,
-    },
+   
   ]
 
   const userData = user ? {
@@ -228,7 +224,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent className="flex flex-col">
         <NavMain items={getNavMainItems()} />
-        {/* {isAdmin() && <NavDocuments items={documents} />} */}
+        { <NavDocuments items={documents} />}
         {/* <NavSecondary items={navSecondary} className="mt-auto" /> */}
       </SidebarContent>
       <SidebarFooter>
